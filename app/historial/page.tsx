@@ -19,17 +19,17 @@ export default async function HistorialPage() {
   const partidos: Partido[] = data ?? []
 
   return (
-    <div className="max-w-6xl mx-auto px-6 py-10">
-      <div className="flex items-center justify-between mb-8">
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-10">
+      <div className="flex items-center justify-between mb-6 sm:mb-8 gap-3">
         <div>
-          <h1 className="text-3xl font-bold text-white">Historial de Partidos</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold text-white">Historial de Partidos</h1>
           <p className="text-green-400 mt-1">{partidos.length} partidos jugados</p>
         </div>
         <Link
           href="/historial/nuevo"
-          className="px-5 py-2.5 bg-green-600 hover:bg-green-500 text-white font-semibold rounded-xl text-sm transition-colors"
+          className="shrink-0 px-3 sm:px-5 py-2 sm:py-2.5 bg-green-600 hover:bg-green-500 text-white font-semibold rounded-xl text-xs sm:text-sm transition-colors"
         >
-          + Registrar partido
+          + Registrar
         </Link>
       </div>
 
@@ -52,51 +52,61 @@ export default async function HistorialPage() {
               <Link
                 key={partido.id}
                 href={`/historial/${partido.id}`}
-                className="flex items-center justify-between bg-green-950 border border-green-800/60 rounded-xl px-6 py-5 hover:border-green-600/50 hover:bg-green-900/20 transition-all group"
+                className="flex flex-col bg-green-950 border border-green-800/60 rounded-xl px-4 sm:px-6 py-4 sm:py-5 hover:border-green-600/50 hover:bg-green-900/20 transition-all group"
               >
-                {/* Team 1 */}
-                <div className="flex-1 text-right">
-                  <p className={`text-base font-bold ${resultado === 'equipo1' ? 'text-white' : 'text-green-600'}`}>
-                    {partido.equipo1_nombre}
-                  </p>
-                  {resultado === 'equipo1' && (
-                    <span className="text-xs text-blue-400 font-semibold">GANADOR</span>
-                  )}
-                </div>
+                {/* Fecha en mobile */}
+                <p className="text-green-600 text-xs mb-2 sm:hidden">{formatFecha(partido.fecha)}</p>
 
-                {/* Score */}
-                <div className="flex items-center gap-3 px-6 text-center">
-                  <span className={`text-4xl font-black tabular-nums ${resultado === 'equipo1' ? 'text-white' : 'text-green-600'}`}>
-                    {partido.goles_equipo1}
-                  </span>
-                  <div className="text-center">
-                    <span className="text-green-700 text-xl">—</span>
-                    {resultado === 'empate' && (
-                      <p className="text-green-500 text-xs font-semibold">Empate</p>
+                <div className="flex items-center justify-between">
+                  {/* Team 1 */}
+                  <div className="flex-1 text-right">
+                    <p className={`text-sm sm:text-base font-bold ${resultado === 'equipo1' ? 'text-white' : 'text-green-600'}`}>
+                      {partido.equipo1_nombre}
+                    </p>
+                    {resultado === 'equipo1' && (
+                      <span className="text-xs text-blue-400 font-semibold">GANADOR</span>
                     )}
                   </div>
-                  <span className={`text-4xl font-black tabular-nums ${resultado === 'equipo2' ? 'text-white' : 'text-green-600'}`}>
-                    {partido.goles_equipo2}
-                  </span>
+
+                  {/* Score */}
+                  <div className="flex items-center gap-2 sm:gap-3 px-3 sm:px-6 text-center">
+                    <span className={`text-2xl sm:text-4xl font-black tabular-nums ${resultado === 'equipo1' ? 'text-white' : 'text-green-600'}`}>
+                      {partido.goles_equipo1}
+                    </span>
+                    <div className="text-center">
+                      <span className="text-green-700 text-lg sm:text-xl">—</span>
+                      {resultado === 'empate' && (
+                        <p className="text-green-500 text-xs font-semibold">Empate</p>
+                      )}
+                    </div>
+                    <span className={`text-2xl sm:text-4xl font-black tabular-nums ${resultado === 'equipo2' ? 'text-white' : 'text-green-600'}`}>
+                      {partido.goles_equipo2}
+                    </span>
+                  </div>
+
+                  {/* Team 2 */}
+                  <div className="flex-1">
+                    <p className={`text-sm sm:text-base font-bold ${resultado === 'equipo2' ? 'text-white' : 'text-green-600'}`}>
+                      {partido.equipo2_nombre}
+                    </p>
+                    {resultado === 'equipo2' && (
+                      <span className="text-xs text-orange-400 font-semibold">GANADOR</span>
+                    )}
+                  </div>
+
+                  {/* Date + arrow (desktop) */}
+                  <div className="hidden sm:block pl-6 text-right shrink-0">
+                    <p className="text-green-500 text-xs">{formatFecha(partido.fecha)}</p>
+                    <p className="text-green-700 text-xs group-hover:text-green-400 transition-colors mt-1">
+                      Ver detalles →
+                    </p>
+                  </div>
                 </div>
 
-                {/* Team 2 + date */}
-                <div className="flex-1">
-                  <p className={`text-base font-bold ${resultado === 'equipo2' ? 'text-white' : 'text-green-600'}`}>
-                    {partido.equipo2_nombre}
-                  </p>
-                  {resultado === 'equipo2' && (
-                    <span className="text-xs text-orange-400 font-semibold">GANADOR</span>
-                  )}
-                </div>
-
-                {/* Date + arrow */}
-                <div className="pl-6 text-right shrink-0">
-                  <p className="text-green-500 text-xs">{formatFecha(partido.fecha)}</p>
-                  <p className="text-green-700 text-xs group-hover:text-green-400 transition-colors mt-1">
-                    Ver detalles →
-                  </p>
-                </div>
+                {/* Arrow en mobile */}
+                <p className="text-green-700 text-xs group-hover:text-green-400 transition-colors mt-2 text-right sm:hidden">
+                  Ver detalles →
+                </p>
               </Link>
             )
           })}

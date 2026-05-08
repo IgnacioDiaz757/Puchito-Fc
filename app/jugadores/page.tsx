@@ -35,7 +35,7 @@ export default async function JugadoresPage() {
   const jugadores: Jugador[] = data ?? []
 
   return (
-    <div className="max-w-6xl mx-auto px-6 py-10">
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-10">
       <div className="mb-8 flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-black text-white">Jugadores</h1>

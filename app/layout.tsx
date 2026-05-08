@@ -11,8 +11,8 @@ const geistSans = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "Puchito FC",
-  description: "Gestión de partidos y estadísticas de Puchito FC",
+  title: "Barcelo FC",
+  description: "Gestión de partidos y estadísticas de Barcelo FC",
 };
 
 export default async function RootLayout({
@@ -38,7 +38,7 @@ export default async function RootLayout({
       <body className="min-h-full flex flex-col bg-[#060f08]">
         {user && <Navbar />}
         {user && needsProfile && <ProfileSetupModal />}
-        <main className="flex-1">{children}</main>
+        <main className={`flex-1 ${user ? 'pt-[65px]' : ''}`}>{children}</main>
       </body>
     </html>
   );

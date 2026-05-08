@@ -38,24 +38,24 @@ export default async function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-green-950 to-black">
 
-      <div className="max-w-7xl mx-auto px-6 py-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-10">
 
         {/* HEADER */}
         <div className="mb-10">
 
-          <div className="flex items-center gap-4 mb-3">
+          <div className="flex items-center gap-3 mb-3">
 
-            <div className="w-16 h-16 rounded-2xl bg-green-500 flex items-center justify-center text-4xl shadow-lg shadow-green-900/60">
+            <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-2xl bg-green-500 flex items-center justify-center text-3xl sm:text-4xl shadow-lg shadow-green-900/60">
               ⚽
             </div>
 
             <div>
-              <h1 className="text-4xl font-black text-white">
+              <h1 className="text-3xl sm:text-4xl font-black text-white">
                 Dashboard
               </h1>
 
               <p className="text-green-400 mt-1">
-                Temporada 2026
+                Temporada 2025 / 2026
               </p>
             </div>
 
@@ -102,7 +102,7 @@ export default async function Home() {
         <div className="bg-gradient-to-br from-green-950 to-black border border-green-800/60 rounded-3xl overflow-hidden shadow-2xl">
 
           {/* HEADER TABLA */}
-          <div className="px-7 py-6 border-b border-green-800/50 flex items-center justify-between">
+          <div className="px-4 sm:px-7 py-5 sm:py-6 border-b border-green-800/50 flex items-center justify-between flex-wrap gap-3">
 
             <div>
               <h2 className="text-2xl font-black text-white">
@@ -150,20 +150,20 @@ export default async function Home() {
                 <thead>
 
                   <tr className="bg-green-900/20 border-b border-green-800/40">
-
-                    {['#', 'Jugador', 'Goles', 'Asist.', 'PJ', 'Promedio'].map(h => (
-
+                    {[
+                      { label: '#',        cls: 'px-4 sm:px-6 text-left' },
+                      { label: 'Jugador',  cls: 'px-4 sm:px-6 text-left' },
+                      { label: 'Goles',    cls: 'px-3 sm:px-4 text-center' },
+                      { label: 'Asist.',   cls: 'px-3 sm:px-4 text-center hidden sm:table-cell' },
+                      { label: 'PJ',       cls: 'px-3 sm:px-4 text-center hidden sm:table-cell' },
+                      { label: 'Promedio', cls: 'px-3 sm:px-4 text-center hidden md:table-cell' },
+                    ].map(h => (
                       <th
-                        key={h}
-                        className={`py-4 text-xs font-bold uppercase tracking-widest text-green-400 ${
-                          h === '#' || h === 'Jugador'
-                            ? 'px-6 text-left'
-                            : 'px-4 text-center'
-                        }`}
+                        key={h.label}
+                        className={`py-4 text-xs font-bold uppercase tracking-widest text-green-400 ${h.cls}`}
                       >
-                        {h}
+                        {h.label}
                       </th>
-
                     ))}
 
                   </tr>
@@ -192,96 +192,57 @@ export default async function Home() {
                         }`}
                       >
 
-                        <td className="px-6 py-5">
-
+                        <td className="px-4 sm:px-6 py-4 sm:py-5">
                           {idx < 3 ? (
-                            <span className="text-3xl">
-                              {MEDALLAS[idx]}
-                            </span>
+                            <span className="text-2xl sm:text-3xl">{MEDALLAS[idx]}</span>
                           ) : (
-                            <span className="text-green-700 font-bold">
-                              #{idx + 1}
-                            </span>
+                            <span className="text-green-700 font-bold">#{idx + 1}</span>
                           )}
-
                         </td>
 
-                        <td className="px-6 py-5">
-
-                          <Link href={`/jugadores/${jugador.id}`} className="flex items-center gap-4 group">
-
-                            <div className={`w-12 h-12 rounded-2xl flex items-center justify-center font-black text-sm shadow-lg transition-transform group-hover:scale-105 ${
-                              isTop
-                                ? 'bg-amber-500 text-black'
-                                : 'bg-green-800 text-white'
+                        <td className="px-4 sm:px-6 py-4 sm:py-5">
+                          <Link href={`/jugadores/${jugador.id}`} className="flex items-center gap-2 sm:gap-4 group">
+                            <div className={`w-9 h-9 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl flex items-center justify-center font-black text-xs sm:text-sm shadow-lg transition-transform group-hover:scale-105 ${
+                              isTop ? 'bg-amber-500 text-black' : 'bg-green-800 text-white'
                             }`}>
                               {initials}
                             </div>
-
                             <div>
-
-                              <p className={`font-bold text-lg group-hover:underline underline-offset-2 ${
-                                isTop
-                                  ? 'text-amber-400'
-                                  : 'text-white'
+                              <p className={`font-bold text-sm sm:text-lg group-hover:underline underline-offset-2 ${
+                                isTop ? 'text-amber-400' : 'text-white'
                               }`}>
                                 {jugador.nombre}
                               </p>
-
-                              <div className="flex items-center gap-2 mt-1">
-
-                                <span className={`text-xs px-2 py-1 rounded-full font-bold ${POSICION_BADGE[jugador.posicion]}`}>
+                              <div className="flex items-center gap-2 mt-0.5 sm:mt-1">
+                                <span className={`text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full font-bold ${POSICION_BADGE[jugador.posicion]}`}>
                                   {jugador.posicion}
                                 </span>
-
-                                <span className="text-yellow-400 text-xs font-bold">
+                                <span className="text-yellow-400 text-xs font-bold hidden sm:inline">
                                   🏆 {jugador.mvps || 0}
                                 </span>
-
                               </div>
-
                             </div>
-
                           </Link>
-
                         </td>
 
-                        <td className="px-4 py-5 text-center">
-
-                          <span className={`text-3xl font-black ${
-                            isTop
-                              ? 'text-amber-400'
-                              : 'text-white'
-                          }`}>
+                        <td className="px-3 sm:px-4 py-4 sm:py-5 text-center">
+                          <span className={`text-2xl sm:text-3xl font-black ${isTop ? 'text-amber-400' : 'text-white'}`}>
                             {jugador.goles}
                           </span>
-
                         </td>
 
-                        <td className="px-4 py-5 text-center">
-
-                          <span className="text-green-300 font-bold">
-                            {jugador.asistencias}
-                          </span>
-
+                        <td className="px-3 sm:px-4 py-4 sm:py-5 text-center hidden sm:table-cell">
+                          <span className="text-green-300 font-bold">{jugador.asistencias}</span>
                         </td>
 
-                        <td className="px-4 py-5 text-center">
-
-                          <span className="text-green-500 font-bold">
-                            {jugador.partidos}
-                          </span>
-
+                        <td className="px-3 sm:px-4 py-4 sm:py-5 text-center hidden sm:table-cell">
+                          <span className="text-green-500 font-bold">{jugador.partidos}</span>
                         </td>
 
-                        <td className="px-4 py-5 text-center">
-
+                        <td className="px-3 sm:px-4 py-4 sm:py-5 text-center hidden md:table-cell">
                           <span className="text-green-400 font-bold tabular-nums">
-                            {jugador.partidos > 0
-                              ? (jugador.goles / jugador.partidos).toFixed(2)
-                              : '0.00'}
+                            {jugador.partidos > 0 ? (jugador.goles / jugador.partidos).toFixed(2) : '0.00'}
                           </span>
-
                         </td>
 
                       </tr>
