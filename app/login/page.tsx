@@ -35,14 +35,14 @@ function LoginForm() {
               BFC
             </div>
             <div>
-              <h1 className="text-white text-3xl font-black tracking-tight">Barcelo FC</h1>
+              <h1 className="text-white text-3xl font-black tracking-tight">Puchito FC</h1>
               <p className="text-green-500 text-sm">Tu fútbol, tus estadísticas.</p>
             </div>
           </div>
 
           {/* Tagline */}
           <p className="text-green-100/80 text-base lg:text-lg font-medium leading-relaxed mb-6 lg:mb-10">
-            La plataforma de gestión para el grupo de Barcelo.
+            La plataforma de gestión para el grupo de Puchito.
             Llevá el control de cada partido, gol y MVP.
           </p>
 

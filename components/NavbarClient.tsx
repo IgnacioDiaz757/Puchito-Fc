@@ -26,9 +26,9 @@ export default function NavbarClient({ userEmail }: Props) {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-3 group" onClick={() => setOpen(false)}>
           <div className="w-9 h-9 bg-green-600 rounded-full flex items-center justify-center font-bold text-white text-xs group-hover:bg-green-500 transition-colors">
-            BFC
+            PFC
           </div>
-          <span className="text-white font-bold text-lg tracking-tight">Barcelo FC</span>
+          <span className="text-white font-bold text-lg tracking-tight">Puchito FC</span>
         </Link>
 
         {/* Desktop links */}
