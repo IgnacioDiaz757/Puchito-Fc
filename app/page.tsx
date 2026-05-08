@@ -55,7 +55,7 @@ export default async function Home() {
               </h1>
 
               <p className="text-green-400 mt-1">
-                Temporada 2025 / 2026
+                Temporada 2026
               </p>
             </div>
 
